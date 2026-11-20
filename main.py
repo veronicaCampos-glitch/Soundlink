@@ -53,3 +53,15 @@ grafo.construir_desde_catalogo(c)
 print(f"Si te gusto '{titulo}', te recomendamos:")
 for rec in grafo.recomendar(titulo, 3):
     print(f"- {rec.titulo} - {rec.artista} ({rec.genero})")
+    print("\n--- TP8 - Recorridos BFS y DFS ---")
+print(f"BFS desde '{titulo}':")
+for nombre in grafo.bfs(titulo):
+    print(f"- {nombre}")
+
+print(f"\nDFS desde '{titulo}':")
+for nombre in grafo.dfs(titulo):
+    print(f"- {nombre}")
+    print("\nAnálisis TP8:")
+print("- BFS: usa cola, busca por niveles, sirve para la canción más cercana. O(V+E)")
+print("- DFS: usa pila/recursión, explora en profundidad. O(V+E)")
+

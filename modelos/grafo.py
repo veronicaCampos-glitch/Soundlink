@@ -51,3 +51,32 @@ class Grafo:
                     if len(resultado) >= n:
                         break
         return resultado
+
+    def bfs(self, inicio):
+        inicio_lower = inicio.lower()
+        visitados = []
+        cola = deque([inicio_lower])
+        vistos = {inicio_lower}
+        while cola:
+            actual = cola.popleft()
+            cancion = self.por_titulo.get(actual)
+            visitados.append(cancion.titulo if cancion else actual)
+            for vecino in self.ady.get(actual, []):
+                if vecino not in vistos:
+                    vistos.add(vecino)
+                    cola.append(vecino)
+        return visitados
+
+    def dfs(self, inicio):
+        inicio_lower = inicio.lower()
+        visitados = []
+        vistos = set()
+        def _dfs(actual):
+            vistos.add(actual)
+            cancion = self.por_titulo.get(actual)
+            visitados.append(cancion.titulo if cancion else actual)
+            for vecino in self.ady.get(actual, []):
+                if vecino not in vistos:
+                    _dfs(vecino)
+        _dfs(inicio_lower)
+        return visitados
